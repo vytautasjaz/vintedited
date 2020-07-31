@@ -10,12 +10,6 @@ Vue.use(VueRouter)
     name: 'Home',
     component: Home
   },
-  // {
-  //   path: '/shop',
-  //   name: 'Shop',
-  //   props: true,
-  //   component: () => import('../views/Shop.vue')
-  // },
   {
     path: '/shop',
     name: 'Shop',

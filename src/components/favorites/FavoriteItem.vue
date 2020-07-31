@@ -5,8 +5,9 @@
     </div>
     <div class="col-4">{{item.name}}</div>
     <div class="col-4">{{item.price}} €</div>
-    <div class="col-2"> 
+    <div class="col-2">
       <div class="d-flex justify-content-between">
+        <div class="btn btn-sm btn-primary" @click="$emit('add-item-to-cart', item.id)">Dėti į krepšelį</div>
         <div class="btn btn-sm btn-danger" @click="remove(item.id)">X</div>
       </div>
     </div>
@@ -14,22 +15,14 @@
 </template>
 
 <script>
-import { mapMutations} from 'vuex';
+import { mapMutations } from "vuex";
 
 export default {
-  props: ['item'],
-  computed:{
-    totalPrice(){
-      return (this.item.price * this.item.count).toFixed(2)
-    }
-  },
-  methods: mapMutations('cart', {
-    inc: 'INC',
-    dec: 'DEC',
-    remove: 'REMOVE'
-  }),
+  props: ["item"],
+  methods: mapMutations("cart", {
+    remove: "REMOVE"
+  })
 };
-
 </script>
 
 <style lang="scss" scoped>
@@ -40,7 +33,7 @@ export default {
     width: 150px;
     object-fit: cover;
   }
-  .btn {
+  .btn-mini {
     height: 2rem;
     width: 2rem;
   }

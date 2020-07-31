@@ -8,7 +8,7 @@
         :key="i"
         @click="setPage(number)"
       >{{number}}</div>
-    </div>
+    </div>  
   </div>
 </template>
 

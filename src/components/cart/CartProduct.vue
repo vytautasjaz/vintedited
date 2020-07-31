@@ -1,48 +1,44 @@
 <template>
-  <div class="cart-item row align-items-center">
-    <div class="col-2">
-      <img :src="item.img" class="cart-item__img" alt="title" />
-    </div>
-    <div class="col-3">{{item.name}}</div>
-    <div class="col-2">{{item.price}} €</div>
-    <div class="col-1">{{item.count}}</div>
-    <div class="col-2">{{totalPrice}} €</div>
-    <div class="col-2">
+  <tr>
+    <td>
+      <img :src="item.img" class="cart-item__img" />
+    </td>
+    <td class="align-middle">{{item.name}}</td>
+    <td class="text-center align-middle">{{item.count}}</td>
+    <td class="text-center align-middle">{{item.price}} €</td>
+    <td class="text-center align-middle">{{totalPrice}} €</td>
+    <td class="text-center align-middle">
       <div class="d-flex justify-content-between">
         <div class="btn btn-sm btn-primary" @click="inc(item.id)">+</div>
         <div class="btn btn-sm btn-secondary" @click="dec(item.id)">-</div>
         <div class="btn btn-sm btn-danger" @click="remove(item.id)">X</div>
       </div>
-    </div>
-  </div>
+    </td>
+  </tr>
 </template>
 
 <script>
-import { mapMutations} from 'vuex';
+import { mapMutations } from "vuex";
 
 export default {
-  props: ['item'],
-  computed:{
-    totalPrice(){
-      return (this.item.price * this.item.count).toFixed(2)
-    }
+  props: ["item"],
+  computed: {
+    totalPrice() {
+      return (this.item.price * this.item.count).toFixed(2);
+    },
   },
-  methods: mapMutations('cart', {
-    inc: 'INC',
-    dec: 'DEC',
-    remove: 'REMOVE'
+  methods: mapMutations("cart", {
+    inc: "INC",
+    dec: "DEC",
+    remove: "REMOVE",
   }),
 };
-
 </script>
 
 <style lang="scss" scoped>
 .cart-item {
-  height: 150px;
   &__img {
-    height: 150px;
-    width: 150px;
-    object-fit: cover;
+    height: 120px;
   }
   .btn {
     height: 2rem;

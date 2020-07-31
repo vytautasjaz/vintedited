@@ -8,7 +8,7 @@ import Icon from 'vue-awesome/components/Icon'
 import 'vue-awesome/icons/shopping-cart'
 import 'vue-awesome/icons/search'
 import 'vue-awesome/icons/star'
-
+import 'vue-awesome/icons/heart'
 
 Vue.component('v-icon', Icon)
 Vue.config.productionTip = false

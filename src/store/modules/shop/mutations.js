@@ -12,6 +12,7 @@ import {
   SET_PAGE,
   FILTER_BY_CATEGORY,
   SET_CATEGORY,
+  SET_SEARCH_QUERY,
 } from './mutation-types';
 import { createCategoryList } from '@/helpers/shopHelpers';
 
@@ -108,5 +109,9 @@ export default {
 
   [SET_CATEGORY](state, category) {
     state.category = category;
+  },
+
+  [SET_SEARCH_QUERY](state, searchInput) {
+    state.searchQuery = searchInput;
   },
 };

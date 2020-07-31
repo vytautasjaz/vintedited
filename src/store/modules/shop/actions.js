@@ -11,15 +11,16 @@ import {
   CREATE_PAGINATION,
   SET_PAGE,
   FILTER_BY_CATEGORY,
-  SET_CATEGORY
+  SET_CATEGORY,
+  SET_SEARCH_QUERY
 } from './mutation-types'
 
 export default {
   async fetchItems({ commit, dispatch }, category) {
     commit(TOGGLE_IS_LOADING);
-    setTimeout(() => { // Užaugęs būsiu API CALL
+    setTimeout(() => {
       commit(CREATE_CATEGORY_FILTERS);
-      commit(SET_CATEGORY, category??"");
+      commit(SET_CATEGORY, category ?? "");
       dispatch('selectItems', category);
       commit(TOGGLE_IS_LOADING);
     }, 500)
@@ -40,14 +41,14 @@ export default {
     commit(CHANGE_SORT_OPTION, name);
     dispatch('selectItems');
   },
-  
-  setPage({commit, dispatch}, page){
+
+  setPage({ commit, dispatch }, page) {
     commit(SET_PAGE, page);
     dispatch('selectItems');
   },
 
-  selectItems({commit, state}){
-    if(state.category){
+  selectItems({ commit, state }) {
+    if (state.category) {
       commit(FILTER_BY_CATEGORY)
     }
     commit(SELECT_ITEMS);
@@ -55,5 +56,8 @@ export default {
     commit(SORT_ITEMS);
     commit(SELECT_PAGE_ITEMS);
     commit(CREATE_PAGINATION);
+  },
+  setSearchQuery({ commit }) {
+    commit(SET_SEARCH_QUERY)
   }
 };

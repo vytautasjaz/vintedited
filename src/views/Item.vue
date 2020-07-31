@@ -7,14 +7,12 @@
       </div>
     </div>
     <div class="row pt-5">
-      <!-- <item-group-similar /> -->
     </div>
   </div>
 </template>
 
 <script>
 import ItemDetails from "@/components/item/ItemDetails.vue";
-// import ItemGroupSimilar from "@/components/item/ItemGroupSimilar.vue";
 import ItemOrderPanel from "@/components/item/ItemOrderPanel.vue";
 
 export default {
@@ -26,7 +24,6 @@ export default {
   },
   components: {
     ItemDetails,
-    // ItemGroupSimilar,
     ItemOrderPanel
   }
 };

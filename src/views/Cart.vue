@@ -4,16 +4,43 @@
       Jūsų krepšelis
       <span v-if="items.length == 0">yra tuščias</span>
     </h1>
-    <div v-if="items.length > 0">
-      <div
-        class="row align-items-center font-weight-bold text-primary border-bottom border-primary py-3 mt-2 mb-1"
-      >
-        <div class="offset-2 col-3">Pavadinimas</div>
-        <div class="col-2">Vieneto kaina</div>
-        <div class="col-1">Kiekis</div>
-        <div class="col-2">Suma</div>
+
+    <div v-if="items.length > 0" class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Prekė</th>
+            <th scope="col" class="text-center">Kiekis</th>
+            <th scope="col" class="text-center">Vieneto kaina</th>
+            <th scope="col" class="text-center">Bendra kaina</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <cart-product class="mb-2" v-for="(item, i) in items" :key="i" :item="item" />
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+              <strong>Bendra suma</strong>
+            </td>
+            <td class="text-center">
+              <strong>0.00 €</strong>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="col mb-2">
+        <div class="row">
+          <div class="col-sm-12 col-md-9"></div>
+          <div class="col-sm-12 col-md-3 text-right">
+            <button class="btn btn-lg btn-block btn-primary text-uppercase">Mokėti</button>
+          </div>
+        </div>
       </div>
-      <cart-product class="mb-2" v-for="(item, i) in items" :key="i" :item="item" />
     </div>
   </div>
 </template>
@@ -26,13 +53,12 @@ export default {
   computed: {
     ...mapGetters({
       items: "cart/getItems",
-    })
+    }),
   },
   components: {
-    CartProduct
-  }
+    CartProduct,
+  },
 };
-
 </script>
 
 <style>

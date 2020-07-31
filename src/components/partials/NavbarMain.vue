@@ -8,17 +8,20 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbar">
-        <!-- <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link">
-              <router-link class="nav-link__link text-nowrap" to="/shop">Prekių katalogas</router-link>
-            </a>
-          </li>
-        </ul>-->
         <div class="input-group w-100 mb-0 pl-0 mx-3">
-          <input type="text" class="form-control" placeholder="Ieškokite savo prekės" />
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Ieškokite savo prekės"
+            v-model="searchQuery"
+          />
           <div class="input-group-append">
-            <button class="btn btn-outline-primary" type="button">
+            <button class="btn btn-outline-primary" type="button"  @click="$router.push({ path: '/shop?category=' + searchQuery })">
+            <!-- <button
+              class="btn btn-outline-primary"
+              type="button"
+            @click="setSearchQuery(searchInput)"
+            > -->
               <v-icon name="search" scale="1.5" />
             </button>
           </div>
@@ -58,10 +61,10 @@
     </div>
     <div class="desktop d-flex align-items-center">
       <div class="container">
-        <ul class="desktop__navigation d-flex">
-          <li class="nav-link__link text-nowrap">
+        <ul class="d-flex">
+          <!-- <li class="nav-link__link text-nowrap">
             <router-link class="nav-link__link text-nowrap" to="/shop">Visos prekės</router-link>
-          </li>
+          </li>-->
           <li class="nav-link__link text-nowrap">
             <router-link class="nav-link__link text-nowrap" to="/shop?category=female">Moteriški</router-link>
           </li>
@@ -82,8 +85,15 @@ import { mapGetters } from "vuex";
 export default {
   computed: mapGetters({
     count: "cart/getItemCount",
-    favoriteItemCount: "favorites/getFavoriteItemCount"
-  })
+    favoriteItemCount: "favorites/getFavoriteItemCount",
+    filters: "shop/getFilters",
+  }),
+  // methods: {
+  //   ...mapActions({
+  //     // toggleFilter: "shop/filterItems"
+  //     setSearchQuery: "shop/setSearchQuery",
+  //   }),
+  // },
 };
 </script>
 
@@ -132,8 +142,6 @@ export default {
   width: 100%;
   height: 2.5rem;
   border-top: 1px solid $gray-300;
-  &__navigation {
-  }
   ul {
     margin: 0;
     padding: 0;

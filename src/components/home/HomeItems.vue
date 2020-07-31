@@ -11,16 +11,29 @@
       :width="width"
       :brand="brand"
       :username="username"
+      @toggle-favorite="toggleFavoriteById"
     />
   </div>
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 import CardItem from "@/components/common/CardItem.vue";
 export default {
   props: ["items"],
   components: {
     CardItem
+  },
+  methods: {
+    ...mapMutations({
+      toggleFavorite: "favorites/TOGGLE_FAVORITE"
+    }),
+    toggleFavoriteById(id) {
+      const item = this.items.find(el => el.id === id);
+      this.toggleFavorite({
+        ...item
+      });
+    }
   }
 };
 </script>
